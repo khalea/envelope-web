@@ -3,7 +3,7 @@ import { prisma } from "../../../../lib/prisma";
 
 /* Error Handling Reference*/
 
-// TODO
+// TODO rewrite and reference https://column.com/docs/api/#entity/object
 export async function createEntity() {
   const newEntity = {
     email: "test@env.com", // unique

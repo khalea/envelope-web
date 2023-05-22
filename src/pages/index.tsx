@@ -3,32 +3,9 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 import { type NextPage } from "next";
+import Navigation from "./_shared/navigation";
 
 const Home: NextPage = () => {
-  const { data: session } = useSession();
-
-  const LoginItem = !session?.user ? (
-    <Link className="mr-4 px-4 py-2 text-white" href="/login">
-      Login
-    </Link>
-  ) : null;
-
-  const AccountItem = session?.user ? (
-    <Link className="mr-4 px-4 py-2 text-white" href="/dashboard">
-      Account
-    </Link>
-  ) : null;
-
-  const Navigation = (
-    <nav className="flex items-center justify-between pb-8">
-      <div className="text-xl font-bold text-white">Envelope</div>
-      <div>
-        {LoginItem}
-        {AccountItem}
-      </div>
-    </nav>
-  );
-
   const HeroSection = (
     <div className="container flex-col items-center">
       <h1 className="pb-4 text-4xl font-bold text-white">
@@ -58,7 +35,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="min-h-screen bg-gradient-to-r from-green-900 from-5% via-emerald-700 via-50% to-cyan-500 px-16 py-8">
-        {Navigation}
+        <Navigation></Navigation>
         {HeroSection}
       </div>
     </>

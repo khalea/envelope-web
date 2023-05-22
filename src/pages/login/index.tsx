@@ -1,10 +1,17 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import SignUpForm from "./_components/signup-form";
+import Navigation from "../_shared/navigation";
+import { useState } from "react";
 
 export default function Login() {
   const { data: session } = useSession();
 
+  const [hasAccount, toggleHasAccount] = useState<boolean>(true);
+
   console.log(session?.user ? session.user : "No session");
   console.log(session ? session : "No session");
+
+  const pageStyle = "flex flex-col min-h-screen px-16 py-8 bg-slate-400";
 
   const signOutAction = () => {
     signOut({ callbackUrl: "/" })
@@ -18,25 +25,38 @@ export default function Login() {
       .catch((error) => console.log(error));
   };
 
-  const BasicSignedIn = (
+  const SignInComponent = (
     <>
-      Signed in as {session?.user.email} <br />
-      <button onClick={signOutAction}>Sign out</button>
-      <div>
-        <h1>Welcome, {session?.user.name}</h1>
-      </div>
+      <button onClick={signInAction}>Sign in</button>
+      <button onClick={() => toggleHasAccount(false)}>
+        Don't have an account? Sign up.
+      </button>
     </>
   );
 
-  const BasicSignedOut = (
+  const SignUpComponent = (
     <>
-      Not signed in <br />
-      <button onClick={signInAction}>Sign in</button>
+      <SignUpForm />
+      <button onClick={() => toggleHasAccount(true)}>
+        Already have an account? Sign in.
+      </button>
+    </>
+  );
+
+  const UserSignedIn = (
+    <>
+      <h1>Welcome, {session?.user.name}</h1>
+      <p>You are already signed in.</p>
     </>
   );
 
   if (session && session.user) {
-    return BasicSignedIn;
+    return UserSignedIn;
   }
-  return BasicSignedOut;
+  return (
+    <div className={pageStyle}>
+      <Navigation></Navigation>
+      {hasAccount ? SignInComponent : SignUpComponent}
+    </div>
+  );
 }
