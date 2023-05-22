@@ -1,3 +1,5 @@
+// TODO: Move this to Prisma schema after accounts can be created via form + API
+// This is for Column Bank Accounts
 export interface AccountInfo {
   available_balance: {
     cents: string;

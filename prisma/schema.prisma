@@ -67,13 +67,12 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// -- APP USER BANKING --
+// -- COLUMN BANK DATA MODELS --
 
 model Entity {
   id            Int     @id @default(autoincrement())
   email         String  @unique @db.VarChar(50)
   username      String  @unique @db.VarChar(50)
-  password      String  @db.VarChar(20)
   first_name    String  @db.VarChar(25)
   middle_name   String? @db.VarChar(50)
   last_name     String  @db.VarChar(25)
