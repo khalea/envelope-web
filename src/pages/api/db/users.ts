@@ -1,7 +1,42 @@
-import { Prisma } from "@prisma/client";
+import { AccountKey, Prisma, User } from "@prisma/client";
 import { prisma } from "../../../../lib/prisma";
+import { type NextApiRequest, type NextApiResponse } from "next";
 
 /* Error Handling Reference*/
+
+/* Handle incoming requests */
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  res.status(200).json({
+    message: `Successfully hit the users endpoint! ${String(req.url)}`,
+  });
+  switch (req.url) {
+    case (req.url = "/api/db/users?login"):
+      console.log("Reached nested endpoint");
+      console.log(req.body);
+      attemptToLogin(req.body.email, req.body.password).catch((reason) => {
+        console.log(reason);
+      });
+  }
+}
+
+export async function attemptToLogin(email: string, password: string) {
+  const userExists: User | undefined = await prisma.user.findUniqueOrThrow({
+    where: {
+      email: email,
+    },
+  });
+  console.log(userExists);
+
+  if (userExists) {
+    const accountKeyCorrect = await prisma.accountKey.findFirst({
+      where: {
+        userId: userExists.id,
+        password: password,
+      },
+    });
+    console.log(accountKeyCorrect);
+  }
+}
 
 // TODO rewrite and reference https://column.com/docs/api/#entity/object
 export async function createEntity() {
