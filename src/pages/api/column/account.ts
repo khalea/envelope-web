@@ -18,13 +18,20 @@ export default async function handler(
         break;
     }
   } else {
-    res.send({
-      error:
-        "You must be signed in to view the protected content on this page.",
-    });
+    switch (req.url) {
+      case (req.url = "api/column/account?getID"):
+        console.log("TODO");
+      // TODO const getAccountIDResponse = await getAccountID();
+      default:
+        res.send({
+          error:
+            "You must be signed in to view the protected content on this page.",
+        });
+    }
   }
 }
 
+/*
 async function getEntityInfo(entityID: string) {
   const options = {
     method: "get",
@@ -42,6 +49,7 @@ async function getEntityInfo(entityID: string) {
     console.error(error);
   }
 }
+*/
 
 async function getBankAccountInfo() {
   const testBankId = process.env.COLUMN_TEST_BANK_ACCOUNT_ID
@@ -63,3 +71,9 @@ async function getBankAccountInfo() {
     console.error(error);
   }
 }
+
+/* TODO
+async function getAccountID() {
+  throw new Error("Function not implemented.");
+}
+*/

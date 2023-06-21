@@ -1,14 +1,18 @@
 /* Autocomplete reference https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values */
 
+/*
 import { useState } from "react";
 import { type Entity } from "@prisma/client";
+*/
 
 export default function SignUpForm() {
-  const [formData, setFormData] = useState<Entity>();
+  // const [formData, setFormData] = useState<Entity>();
 
+  /*
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
   };
+  */
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

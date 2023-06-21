@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { type AccountInfo } from "../_shared/types";
+import { type AccountInfo } from "../api/column/types";
 import { useEffect, useState } from "react";
 
 import axios from "axios";
@@ -14,10 +14,13 @@ const fetcher = (url: string) =>
 const Dashboard: NextPage = () => {
   const { data: session } = useSession();
 
-  const { data, error, isLoading, isValidating, mutate } = useSWR<
-    AccountInfo,
-    Error
-  >("/api/column/account", fetcher);
+  const {
+    data,
+    //error,
+    //isLoading,
+    //isValidating,
+    //mutate
+  } = useSWR<AccountInfo, Error>("/api/column/account", fetcher);
 
   const [accountInfo, setAccountInfo] = useState<AccountInfo>();
 

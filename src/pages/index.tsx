@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
-import { useSession } from "next-auth/react";
 
 import { type NextPage } from "next";
 import Navigation from "./_shared/navigation";

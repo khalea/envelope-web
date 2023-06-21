@@ -1,11 +1,20 @@
-import { AccountKey, Prisma, User } from "@prisma/client";
+// import { AccountKey, Prisma } from "@prisma/client";
+import { type User } from "@prisma/client";
 import { prisma } from "../../../../lib/prisma";
 import { type NextApiRequest, type NextApiResponse } from "next";
 
 /* Error Handling Reference*/
 
+interface LoginRequest extends NextApiRequest {
+  body: {
+    // Define your expected body fields and their types here
+    email: string;
+    password: string;
+  };
+}
+
 /* Handle incoming requests */
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req: LoginRequest, res: NextApiResponse) {
   res.status(200).json({
     message: `Successfully hit the users endpoint! ${String(req.url)}`,
   });
@@ -13,9 +22,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     case (req.url = "/api/db/users?login"):
       console.log("Reached nested endpoint");
       console.log(req.body);
-      attemptToLogin(req.body.email, req.body.password).catch((reason) => {
-        console.log(reason);
-      });
+      console.log(req.body.password);
+      attemptToLogin(req.body.email, req.body.password)
+        .then((value) => {
+          console.log(value);
+        })
+        .catch((reason) => {
+          console.log(reason);
+        });
   }
 }
 
@@ -36,6 +50,8 @@ export async function attemptToLogin(email: string, password: string) {
     });
     console.log(accountKeyCorrect);
   }
+
+  // TODO Get bank account ID
 }
 
 // TODO rewrite and reference https://column.com/docs/api/#entity/object
@@ -60,6 +76,7 @@ export async function createEntity() {
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log("Creating new entity...");
+    console.log(newEntity);
   } catch (error) {
     console.error(error);
   }
