@@ -1,4 +1,5 @@
-import { useSession, signIn, signOut } from "next-auth/react";
+// import { signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import SignUpForm from "./_components/signup-form";
 import Navigation from "../_shared/navigation";
 import { useState } from "react";
@@ -13,11 +14,13 @@ export default function Login() {
 
   const pageStyle = "flex flex-col min-h-screen px-16 py-8 bg-slate-400";
 
+  /*
   const signOutAction = () => {
     signOut({ callbackUrl: "/" })
       .then((value) => console.log(value))
       .catch((error) => console.log(error));
   };
+  */
 
   const signInAction = () => {
     signIn("google", { callbackUrl: "/dashboard" })
@@ -29,7 +32,7 @@ export default function Login() {
     <>
       <button onClick={signInAction}>Sign in</button>
       <button onClick={() => toggleHasAccount(false)}>
-        Don't have an account? Sign up.
+        {"Don't have an account? Sign up."}
       </button>
     </>
   );

@@ -1,4 +1,4 @@
-interface AccountInfo {
+export interface AccountInfo {
   available_balance: {
     cents: string;
     currency_code: string;
@@ -35,6 +35,7 @@ interface AccountInfo {
   type: string;
 }
 
+/*
 interface Entity {
   documents: [
     {
@@ -67,3 +68,4 @@ interface Entity {
   verification_status: string;
   verification_tags: Array<string>;
 }
+*/
