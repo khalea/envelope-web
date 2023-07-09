@@ -1,4 +1,79 @@
-# Create T3 App
+# Envelope (Web)
+
+## Introduction
+
+Envelope is an open source Neobank starter kit using [Column Bank's API](https://column.com/). This monorepo is composed of the Web client (soon to come) and backend API. The iOS client repo can be found [here](https://github.com/khalea/envelope-mobile).
+
+This project uses:
+
+- [NextJS](https://nextjs.org/) - React web framework
+- [NextAuth with Google](https://next-auth.js.org/providers/google) - Authentication for Next.js
+- [Prisma](https://www.prisma.io/) - Object Relational Mapper (ORM) for interfacing with DB
+- [Column Bank](https://column.com/) - Banking API tools
+- [Planetscale](https://planetscale.com/) - Scalable MySQL Database
+- [Vercel]() - Cloud / Deployments
+
+---
+
+## Setup
+
+### Install & Run
+
+**Clone repo**
+
+`git clone https://github.com/khalea/envelope-web.git`
+
+**Install packages**
+
+`npm install`
+
+**Run on localhost**
+
+`npm run dev`
+
+### Environment Variables
+
+All relevant environment variables are in `.env.example`. Create an `.env.local` and fill in your secrets (this file will be ignored by Git).
+
+**NextAuth**
+
+[Reference](https://authjs.dev/guides/basics/deployment)
+
+`NEXTAUTH_SECRET`
+
+`NEXTAUTH_URL`
+
+**Google**
+
+[Reference](https://next-auth.js.org/providers/google)
+
+`GOOGLE_CLIENT_ID`
+
+`GOOGLE_CLIENT_SECRET`
+
+**PlanetScale**
+
+[Reference](https://planetscale.com/docs/tutorials/deploy-to-vercel#manually-connect-to-vercel)
+
+`DATABASE_URL`
+
+`PLANETSCALE_USERNAME`
+
+`PLANETSCALE_PASSWORD`
+
+**Column Bank**
+
+[Reference](https://column.com/)
+
+`COLUMN_KEY`
+
+`COLUMN_AUTH`
+
+`COLUMN_TEST_BANK_ACCOUNT_ID` (optional)
+
+---
+
+## Create T3 App
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
